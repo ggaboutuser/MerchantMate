@@ -1,0 +1,25 @@
+Brief notes on development experience:
+- The project started as a retail analytics dashboard, but it became clearer that the assistant should be the main product because the focus is on agentic AI.
+- The dataset was useful for revenue, customer behavior, cancellations, and trends, but it does not include product cost data. Because of this, the system can explain revenue but not true profit margin.
+- The price and revenue fields use GBP because the dataset comes from a UK-based retailer.
+
+Roadblocks solved during development:
+- Slow response time:
+  The system was initially slow because it had to repeatedly load the Excel dataset, run analysis, and call the LLM. This was improved by caching the cleaned dataset, using direct-answer logic for common factual questions, and sending only targeted context to the model.
+
+- Chatbot accuracy on repeated test prompts:
+  Some open-ended LLM answers gave inconsistent wording for top products and customer segments. This was improved by adding deterministic answer paths for important factual questions such as top product, top segment, currency, and cancellation rate.
+
+- UI focus:
+  The first version felt more like a dashboard than an AI assistant. This was corrected by redesigning the interface so that chat is the main homepage and the supporting dashboard appears only when the user asks for chart, graph, table, trend, or dashboard views.
+
+- Streamlit environment issues:
+  Early setup issues included missing packages such as plotly and confusion between .env and .venv. These were solved by activating the project virtual environment, installing dependencies, and keeping secret configuration separate from the Python environment.
+
+- Data interpretation limits:
+  Some business rows, such as DOTCOM POSTAGE, can affect product ranking. For now, these rows were intentionally kept in the analysis so the assistant stays faithful to the current dataset rather than silently changing business rules.
+
+Summary:
+- MerchantMate successfully combines retail analytics, customer segmentation, and a Groq-powered LLM assistant.
+- The final system is closer to an assistant-first business copilot than a static dashboard.
+- The biggest lessons were about balancing accuracy, response speed, and user experience in an agentic AI workflow.
