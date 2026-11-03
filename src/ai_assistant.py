@@ -71,7 +71,8 @@ class MerchantMateAssistant:
     def __init__(self, model_name: str | None = None) -> None:
         load_dotenv(ENV_PATH)
         self.api_key = os.getenv("GROQ_API_KEY")
-        self.model_name = model_name or os.getenv("MODEL_NAME", "llama-3.1-8b-instant")
+        # Use a currently supported fast Groq model unless deployment overrides it.
+        self.model_name = model_name or os.getenv("MODEL_NAME", "openai/gpt-oss-20b")
         self.client = Groq(api_key=self.api_key) if self.api_key else None
 
     def is_configured(self) -> bool:
