@@ -1,6 +1,7 @@
 # MerchantMate Project
 
 ## "python -m streamlit run src/dashboard.py" in terminal to run
+## "CTRL + C" in terminal to stop
 
 ## Current structure
 - `data/Online Retail.xlsx` dataset
